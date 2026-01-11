@@ -1,7 +1,5 @@
 class DBManager:
-    """
-
-    """
+    """ """
 
     def get_companies_and_vacancies_count(self):
         """
@@ -10,7 +8,6 @@ class DBManager:
         """
         pass
 
-
     def get_all_vacancies(self):
         """
         получает список всех вакансий с указанием названия компании, названия вакансии и зарплаты и ссылки на вакансию.
@@ -18,13 +15,11 @@ class DBManager:
         """
         pass
 
-
     def get_avg_salary(self):
         """
         получает среднюю зарплату по вакансиям
         :return:
         """
-
 
     def get_vacancies_with_higher_salary(self):
         """
@@ -32,7 +27,6 @@ class DBManager:
         :return:
         """
         pass
-
 
     def get_vacancies_with_keyword(self):
         """
