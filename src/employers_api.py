@@ -1,9 +1,7 @@
-import requests
-
-from src.base_api_hunter import BaseAPIHunter
+from src.api_hunter import APIHunter
 
 
-class EmployersAPI(BaseAPIHunter):
+class EmployersAPI(APIHunter):
     """
     Класс для получения API о компаниях.
     """
@@ -14,12 +12,14 @@ class EmployersAPI(BaseAPIHunter):
         """
         self._base_url='https://api.hh.ru/employers'
 
-    def _request_api_datas(self, params: dict = None) -> list:
-        resp = requests.get(f"{self._base_url}", params)
-        if resp.status_code == 200:
-            return resp.json()
-        else:
-            raise ValueError("No datas")
+
+
+    def get_employers_names_with_id(self)->dict:
+        """
+
+        :return:
+        """
+        pass
 
 
 
