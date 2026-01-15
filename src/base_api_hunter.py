@@ -14,5 +14,3 @@ class BaseAPIHunter(ABC):
         :return:Список api данных
         """
         pass
-
-
