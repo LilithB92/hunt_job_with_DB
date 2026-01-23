@@ -49,9 +49,23 @@ class VacanciesAPI(APIHunter):
             "requirement": vacancy["snippet"]["requirement"],
         }
 
+    def get_all_companies_vacancies(self, id_list: list[str]) -> list:
+        """
+        Получает все вакансии из компании, чей id присутствует в списке. И возвращает все вакансии.
+        :param id_list: Список компании id.
+        :return: Список Вакансии
+        """
+        try:
+            for emp_id in id_list:
+                self.add_one_company_vacancies(emp_id)
+            return self.company_vacancies
+        except TypeError:
+            return []
+
 
 if __name__ == "__main__":
     vac = VacanciesAPI()
     vac.add_one_company_vacancies(emp_id="872241")
     # vac.add_company_vacancies(emp_id="10413982")
-    pprint.pprint(vac.company_vacancies)
+    # pprint.pprint(vac.company_vacancies)
+    pprint.pprint(vac.get_all_companies_vacancies(["872241", "46926", "234", "10413982"]))
