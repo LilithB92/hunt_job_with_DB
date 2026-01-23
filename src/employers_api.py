@@ -28,12 +28,17 @@ class EmployersAPI(APIHunter):
         """
         params = {"text": text, "area": area, "per_page": 10, "page": 0}
         employers_data = self.get_api_datas(params)
-        self._employers = [
-            {"id": emp.get("id"), "name": emp.get("name"), "url": emp.get("url")}
-            for emp in employers_data
-            if employers_data
-        ]
+        self._employers = [self.employer_to_dict(emp) for emp in employers_data if employers_data]
         return self._employers
+
+    @staticmethod
+    def employer_to_dict(employer: object) -> dict:
+        """
+        Метод из JSON ответа компании выбирает нужные данные и возвращает словарь.
+        :param employer:  JSON ответ компании.
+        :return: Словарь с данными вакансиями
+        """
+        return {"id": employer.get("id"), "name": employer.get("name"), "url": employer.get("url")}
 
 
 if __name__ == "__main__":

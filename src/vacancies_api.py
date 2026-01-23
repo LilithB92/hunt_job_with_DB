@@ -37,7 +37,7 @@ class VacanciesAPI(APIHunter):
         """
         Метод из JSON ответа вакансии выбирает нужные данные и возвращает словарь.
         :param vacancy:  JSON ответ вакансии.
-        :return: Словарь сданными вакансиями
+        :return: Словарь с данными вакансиями
         """
         return {
             "employer_id": vacancy["employer"]["id"],
