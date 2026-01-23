@@ -19,19 +19,6 @@ class EmployersAPI(APIHunter):
         self._employers = []
         super().__init__(self._base_url)
 
-    def get_employers_datas(self, params: dict) -> list:
-        """
-        Получает данные компании из API, если не найдет возвращать пустой лист
-        :param params:API параметр для конкретизации получение данных.
-        :return:Список API данных.
-        """
-        try:
-
-            response = self._request_api_datas(params)
-            return response.get("items", [])
-        except ValueError():
-            return []
-
     def get_ten_employers(self, text: str = "разработчик", area: int = None) -> list:
         """
         Получает данные 10 компании из text(IT сфере по умолчанию). Возвращает список словарей компании.
@@ -40,7 +27,7 @@ class EmployersAPI(APIHunter):
         :return:Список словарей компании
         """
         params = {"text": text, "area": area, "per_page": 10, "page": 0}
-        employers_data = self.get_employers_datas(params)
+        employers_data = self.get_api_datas(params)
         self._employers = [
             {"id": emp.get("id"), "name": emp.get("name"), "url": emp.get("url")}
             for emp in employers_data
