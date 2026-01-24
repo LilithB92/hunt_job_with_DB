@@ -1,5 +1,3 @@
-import pprint
-
 from src.api_hunter import APIHunter
 
 
@@ -43,4 +41,6 @@ class EmployersAPI(APIHunter):
 
 if __name__ == "__main__":
     ea = EmployersAPI()
-    pprint.pprint(ea.get_ten_employers(area=1))
+    emp_list=ea.get_ten_employers(area=1)
+    emp_id =[emp['id'] for emp in emp_list ]
+    print(emp_id)

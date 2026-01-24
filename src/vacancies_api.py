@@ -41,7 +41,7 @@ class VacanciesAPI(APIHunter):
         """
         return {
             "employer_id": vacancy["employer"]["id"],
-            "name": vacancy["name"],
+            "title": vacancy["name"],
             "url": vacancy["alternate_url"],
             "salary_from": vacancy["salary"].get("from", None) if vacancy["salary"] else None,
             "salary_to": vacancy["salary"].get("to", None) if vacancy["salary"] else None,
@@ -68,4 +68,4 @@ if __name__ == "__main__":
     vac.add_one_company_vacancies(emp_id="872241")
     # vac.add_company_vacancies(emp_id="10413982")
     # pprint.pprint(vac.company_vacancies)
-    pprint.pprint(vac.get_all_companies_vacancies(["872241", "46926", "234", "10413982"]))
+    pprint.pprint(vac.get_all_companies_vacancies(["872241"]))
