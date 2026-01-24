@@ -7,10 +7,9 @@ load_dotenv()
 
 
 class PostgresDB:
-    def __init__(self, dbname: str = "postgres"):
+    def __init__(self):
         """Метод для инициализации экземпляра класса. Задаем значения атрибутам экземпляра."""
         self.connection_params = {
-            "dbname": dbname,
             "user": os.getenv("POSTGRES_USER"),
             "password": os.getenv("POSTGRES_PASS"),
             "host": os.getenv("POSTGRES_HOST"),
@@ -19,11 +18,11 @@ class PostgresDB:
         self.conn = None
         self.cur = None
 
-    def connect(self):
+    def connect(self, dbname: str = "postgres"):
         """Установление соединения с базой данных"""
         try:
             if not self.conn:
-                self.conn = psycopg2.connect(**self.connection_params)
+                self.conn = psycopg2.connect(**self.connection_params,dbname=dbname)
                 print("Connection to PostgresSQL successful.")
         except Error as e:
             print(f"Error connecting to PostgresSQL: {e}")
