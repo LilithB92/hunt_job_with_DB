@@ -27,10 +27,15 @@ class VacanciesAPI(APIHunter):
             par = {"employer_id": emp_id, "per_page": 10, "page": page}
             if self.get_api_datas(par):
                 company_vacancies = self.get_api_datas(par)
-                [self.company_vacancies.append(self.vacancy_to_dict(vacancy)) for vacancy in company_vacancies if vac]
+                [
+                    self.company_vacancies.append(self.vacancy_to_dict(vacancy))
+                    for vacancy in company_vacancies
+                    if vacancy
+                ]
             else:
                 break
             page += 1
+        del page
 
     @staticmethod
     def vacancy_to_dict(vacancy: object) -> dict:

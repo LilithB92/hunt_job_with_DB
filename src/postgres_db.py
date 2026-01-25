@@ -22,7 +22,7 @@ class PostgresDB:
         """Установление соединения с базой данных"""
         try:
             if not self.conn:
-                self.conn = psycopg2.connect(**self.connection_params,dbname=dbname)
+                self.conn = psycopg2.connect(**self.connection_params, dbname=dbname)
                 print("Connection to PostgresSQL successful.")
         except Error as e:
             print(f"Error connecting to PostgresSQL: {e}")
@@ -31,6 +31,8 @@ class PostgresDB:
         """Метод закроет курсор и соединение с базой данных."""
         if self.cur:
             self.cur.close()
+            self.cur = None
         if self.conn:
             self.conn.close()
+            self.conn = None
             print("Database connection closed.")

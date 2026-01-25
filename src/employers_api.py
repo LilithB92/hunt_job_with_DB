@@ -41,6 +41,6 @@ class EmployersAPI(APIHunter):
 
 if __name__ == "__main__":
     ea = EmployersAPI()
-    emp_list=ea.get_ten_employers(area=1)
-    emp_id =[emp['id'] for emp in emp_list ]
+    emp_list = ea.get_ten_employers(area=1)
+    emp_id = [emp["id"] for emp in emp_list]
     print(emp_id)
