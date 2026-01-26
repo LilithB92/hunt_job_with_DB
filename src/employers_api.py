@@ -24,7 +24,7 @@ class EmployersAPI(APIHunter):
         :param area:Идентификатор региона работодателя
         :return:Список словарей компании
         """
-        params = {"text": text, "area": area, "per_page": 10, "page": 0}
+        params = {"text": text, "area": area, "only_with_vacancies": True, "per_page": 10, "page": 0}
         employers_data = self.get_api_datas(params)
         self._employers = [self.employer_to_dict(emp) for emp in employers_data if employers_data]
         return self._employers
@@ -43,4 +43,4 @@ if __name__ == "__main__":
     ea = EmployersAPI()
     emp_list = ea.get_ten_employers(area=1)
     emp_id = [emp["id"] for emp in emp_list]
-    print(emp_id)
+    print(emp_list)

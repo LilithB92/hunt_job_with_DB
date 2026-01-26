@@ -159,7 +159,7 @@ if __name__ == "__main__":
     db.create_database("esim")
     db.create_tables("esim")
     ea = EmployersAPI()
-    emp_list = ea.get_ten_employers(area=1)
+    emp_list = ea.get_ten_employers()
     emp_id = [emp["id"] for emp in emp_list]
     vac = VacanciesAPI()
     vac_list = vac.get_all_companies_vacancies(emp_id)
