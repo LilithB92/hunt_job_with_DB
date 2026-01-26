@@ -9,16 +9,16 @@ from src.postgres_db import PostgresDB
 class DBManager(PostgresDB):
     """Взаимодействие с базой данных"""
 
-    def __init__(self):
+    def __init__(self, db_name: str = "hh_api_db"):
         super().__init__()
-        self.db_name = "esim"
+        self.db_name = db_name
 
     def execute_query(self, query, params=None) -> list[tuple]:
         """
-        Execute a single query and optionally fetch results.
-
-        Note: The connection is committed automatically for non-SELECT queries
-        when using the 'with' statement for the connection.
+        Выполняет один sql запрос и при необходимости получает результаты.
+        :param query: SQL запрос
+        :param params: Параметры запроса
+        :return: Ответ запроса
         """
         if not self.conn:
             print("No database connection. Please connect first.")
@@ -87,8 +87,10 @@ class DBManager(PostgresDB):
          получает список всех вакансий, в названии которых содержатся переданные в метод слова, например python.
         :return:
         """
-        query = (f"SELECT * FROM vacancies WHERE (LOWER(vacancies.requirement) LIKE LOWER('%{text}%')) OR "
-                 f"(LOWER(vacancies.title) LIKE LOWER('%{text}%'))")
+        query = (
+            f"SELECT * FROM vacancies WHERE (LOWER(vacancies.requirement) LIKE LOWER('%{text}%')) OR "
+            f"(LOWER(vacancies.title) LIKE LOWER('%{text}%'))"
+        )
         return self.execute_query(query)
 
 

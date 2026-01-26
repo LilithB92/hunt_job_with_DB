@@ -1,9 +1,6 @@
 import psycopg2
 from psycopg2.sql import NULL
-
-from src.employers_api import EmployersAPI
 from src.postgres_db import PostgresDB
-from src.vacancies_api import VacanciesAPI
 
 
 class DBCreator(PostgresDB):
@@ -152,16 +149,3 @@ class DBCreator(PostgresDB):
             raise
         finally:
             self.close()
-
-
-if __name__ == "__main__":
-    db = DBCreator()
-    db.create_database("esim")
-    db.create_tables("esim")
-    ea = EmployersAPI()
-    emp_list = ea.get_ten_employers()
-    emp_id = [emp["id"] for emp in emp_list]
-    vac = VacanciesAPI()
-    vac_list = vac.get_all_companies_vacancies(emp_id)
-    db.fill_employers_in_db("esim", emp_list)
-    db.fill_vacancies_in_db("esim", vac_list)
