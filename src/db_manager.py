@@ -1,4 +1,3 @@
-import pprint
 from typing import Optional
 
 from psycopg2 import OperationalError
@@ -37,7 +36,7 @@ class DBManager(PostgresDB):
     def get_companies_and_vacancies_count(self) -> list[tuple]:
         """
         получает список всех компаний и количество вакансий у каждой компании
-        :return:
+        :return:Ответ запроса
         """
         query = (
             "SELECT employees.name, COUNT(vacancies.vacancy_id) AS total_vacancies "
@@ -51,12 +50,11 @@ class DBManager(PostgresDB):
     def get_all_vacancies(self) -> list[tuple]:
         """
         получает список всех вакансий с указанием названия компании, названия вакансии и зарплаты и ссылки на вакансию
-        :return:
+        :return:Ответ запроса
         """
         query = (
             "SELECT employees.name, vacancies.title, vacancies.salary_from, vacancies.salary_to, vacancies.url "
-            "FROM vacancies "
-            "LEFT JOIN employees USING(employer_id)"
+            "FROM vacancies LEFT JOIN employees USING(employer_id)"
         )
         return self.execute_query(query)
 
@@ -92,9 +90,3 @@ class DBManager(PostgresDB):
             f"(LOWER(vacancies.title) LIKE LOWER('%{text}%'))"
         )
         return self.execute_query(query)
-
-
-if __name__ == "__main__":
-    db_man = DBManager()
-
-    pprint.pprint(db_man.get_vacancies_with_keyword("Бухгалтер"))
