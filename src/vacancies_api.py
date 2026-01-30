@@ -1,5 +1,3 @@
-import pprint
-
 from src.api_hunter import APIHunter
 
 
@@ -12,8 +10,8 @@ class VacanciesAPI(APIHunter):
         """
         Метод для инициализации экземпляра класса. Задаем значения атрибутам экземпляра.
         """
-        self._base_url = "https://api.hh.ru/vacancies"
-        super().__init__(self._base_url)
+        self.base_url = "https://api.hh.ru/vacancies"
+        super().__init__(self.base_url)
         self.company_vacancies = []
 
     def add_one_company_vacancies(self, emp_id: str) -> None:
@@ -73,4 +71,4 @@ if __name__ == "__main__":
     vac.add_one_company_vacancies(emp_id="872241")
     # vac.add_company_vacancies(emp_id="10413982")
     # pprint.pprint(vac.company_vacancies)
-    pprint.pprint(vac.get_all_companies_vacancies(["872241"]))
+    # pprint.pprint(vac.get_all_companies_vacancies(["872241"]))
