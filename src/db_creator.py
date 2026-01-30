@@ -29,9 +29,8 @@ class DBCreator(PostgresDB):
                 self.cur.execute(f"CREATE DATABASE {db_name}")  # Создаем БД
             print(f'База "{db_name}" успешно пересоздана!')
 
-        except psycopg2.Error as e:
+        except (AttributeError, TypeError, psycopg2.Error) as e:
             print(f"Ошибка при создании БД: {e}")
-            raise
         finally:
             self.close()
 
@@ -71,10 +70,9 @@ class DBCreator(PostgresDB):
             self.conn.commit()
             print("Таблицы 'employees' и 'vacancies' успешно созданы.")
 
-        except psycopg2.Error as e:
+        except (AttributeError, TypeError, psycopg2.Error) as e:
             self.conn.rollback()
             print(f"Ошибка при создании таблицы: {e}")
-            raise
         finally:
             self.close()
 
@@ -104,10 +102,9 @@ class DBCreator(PostgresDB):
             self.conn.commit()
             print(f"Работодатель '{employer['name']}' сохранен в БД > 'employees'.")
 
-        except psycopg2.Error as e:
+        except (AttributeError, TypeError, psycopg2.Error) as e:
             self.conn.rollback()
             print(f"Ошибка при создании работодателя {employer.get('name')}: {e}")
-            raise
         finally:
             self.close()
 
@@ -144,8 +141,7 @@ class DBCreator(PostgresDB):
                         )
             self.conn.commit()
         except psycopg2.Error as e:
-            self.conn.rellback()
+            self.conn.rollback()
             print(f"Ошибка при сохранении вакансии: {e}")
-            raise
         finally:
             self.close()
