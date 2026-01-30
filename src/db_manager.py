@@ -69,7 +69,10 @@ class DBManager(PostgresDB):
             "FROM vacancies"
         )
         avg_salary = self.execute_query(query)
-        return round(avg_salary[0][0], 2)
+        if avg_salary[0][0]:
+            return round(avg_salary[0][0], 2)
+        else:
+            return 0.00
 
     def get_vacancies_with_higher_salary(self) -> list[tuple]:
         """

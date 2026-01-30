@@ -1,5 +1,3 @@
-import pprint
-
 from src.api_hunter import APIHunter
 
 
@@ -28,7 +26,6 @@ class EmployersAPI(APIHunter):
         """
         params = {"text": text, "area": area, "only_with_vacancies": True, "per_page": 10, "page": 0}
         employers_data = self.get_api_datas(params)
-        pprint.pprint(employers_data)
         self._employers = [self.employer_to_dict(emp) for emp in employers_data if employers_data]
         return self._employers
 
