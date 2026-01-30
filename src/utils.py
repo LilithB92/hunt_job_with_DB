@@ -30,6 +30,3 @@ def fill_api_to_db(db_name: str = "hh_api_db") -> None:
     db.fill_vacancies_in_db(db_name, vacancies_list)
 
 
-if __name__ == "__main__":
-    create_db_with_tables()
-    fill_api_to_db()
