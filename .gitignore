@@ -38,19 +38,19 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Unit tests / coverage reports
 htmlcov/
 .tox/
 .nox/
-.coverage
-.coverage.*
+#.coverage
+#.coverage.*
 .cache
 nosetests.xml
 coverage.xml
-*.cover
-*.py,cover
+#*.cover
+#*.py,cover
 .hypothesis/
-.pytest_cache/
+#.pytest_cache/
 #cover/
 #htmlcov/
 #.tox/
@@ -221,3 +221,4 @@ __marimo__/
 
 #tests
 #tests/
+#tests.py
